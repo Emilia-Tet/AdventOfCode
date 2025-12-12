@@ -1,0 +1,26 @@
+with open(r"path", "r") as path:
+    for i in path:
+        i = i.strip()
+
+        if i.startswith('L'):
+            instr = -1*int(i[1:])
+            olddial = dial
+            dial = (instr+dial+100)%100
+
+            if abs(instr)>= 100:
+                final_result+= abs(instr)//100
+            if instr%100:
+                if dial > olddial and olddial!= 0:
+                    final_result+=1
+                if dial == 0:
+                    final_result+=1
+            
+
+        else:
+            instr = int(i[1:])
+            interdial = dial+instr
+            final_result+= interdial//100
+            dial = interdial%100
+
+
+    print(final_result)
