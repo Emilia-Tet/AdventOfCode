@@ -1,0 +1,17 @@
+from functools import reduce
+import operator
+import pandas as pd
+
+ops = {
+    '+': operator.add,
+    '*': operator.mul,
+}
+
+result = 0
+with open(r'path', 'r') as inputfile:
+    lines = inputfile.readlines()
+    lists_lines = [line.split() for line in lines]
+
+    for i in range(1000):
+        numberlist = [int(k[i]) for k in lists_lines[0:4]]
+        result += reduce(ops[lists_lines[4][i]], numberlist)
