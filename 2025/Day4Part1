@@ -1,0 +1,43 @@
+test_board = '''..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.'''
+board = test_board.split('\n')
+
+with open(r'Input.txt', 'r', encoding='utf-8') as file:
+    board = file.read().splitlines()
+    neighbors = [
+        (-1,-1), (-1, 0), (-1, 1),
+        (0,-1),  (0,1),
+        (1, -1), (1, 0), (1,1)
+    ]
+
+    # my rows: number of the elements in the list
+    board_rows = len(board)
+
+    # my columns: number of elements in the first/all next rows
+    board_cols = len(board[0])
+
+    final_result = 0
+
+    for row in range(board_rows):
+        for col in range(board_cols):
+            if board[row][col] == '.':
+                # print(board[row][col], [row, col], 'skipped')
+                continue
+            neighbor_rolls_count = 0
+            for dx, dy in neighbors:
+                x = row + dx
+                y = col + dy
+                if 0 <= x < board_rows and 0<= y < board_cols:
+                    if board[x][y] == '@':
+                        neighbor_rolls_count += 1
+            # print(board[row][col], [row, col], neighbor_rolls_count)
+            if neighbor_rolls_count < 4:
+                final_result += 1
