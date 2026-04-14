@@ -1,7 +1,7 @@
 final_result = 0
 dial = 50
 
-with open(r"path", "r") as path:
+with open(r"input.txt", "r") as path:
     for i in path:
         i = i.strip()
 
