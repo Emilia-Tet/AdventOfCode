@@ -1,0 +1,17 @@
+finalresult = 0
+
+with open(r'Input.txt', 'r') as input:
+    for line in input:
+        winner1 = 0
+        winner1ind = 0
+        winner2 = 0
+        strline1 = line.strip()[:-1]
+        for ind, i in enumerate(strline1):
+            print(ind, i)
+            if int(i) > winner1:
+                winner1 = int(i)
+                winner1ind = ind
+        for j in line.strip()[winner1ind+1:]:
+            if int(j) > winner2:
+                winner2 = int(j)
+        finalresult+=(winner1*10+winner2)
