@@ -1,0 +1,23 @@
+input = input.split()
+result = 0
+
+def stack_function(input_number, limit_to_remove):
+    output = []
+    for digit in input_number:
+        while (output
+            and limit_to_remove > 0
+                and output[-1] < digit
+        ):
+            output.pop()
+            limit_to_remove -= 1 
+
+        output.append(digit)
+
+    if limit_to_remove > 0:
+        output = output[:-limit_to_remove]
+    return ''.join(output)
+
+for i in input:
+    result += int(stack_function(i, 88))
+
+print(result)
